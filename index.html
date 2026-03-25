@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="pt">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,7 +13,7 @@
   <header>
     <img src="./LOGO EXEMPLO.png" width="200px" alt="logo resto">
     <!-- <div class="logo"><span>La</span> Mesa</div> -->
-    <div class="tagline">Menú digital</div>
+    <div class="tagline">Menu digital</div>
     <div class="header-line"></div>
   </header>
 
@@ -32,13 +32,13 @@
         <div class="ai-dot"></div>
         <div>
           <div class="chat-title">Asistente IA</div>
-          <div class="chat-subtitle">Pergunta sobre o menú ou faz teu pedido</div>
+          <div class="chat-subtitle">Pergunta sobre o menu ou faz teu pedido</div>
         </div>
       </div>
 
       <div class="quick-chips" id="quickChips">
-        <button class="chip" onclick="sendChip('¿Qué me recomenda?')">¿Qué me recomenda?</button>
-        <button class="chip" onclick="sendChip('¿Tem opções vegetarianas?')">Opcões veggie</button>
+        <button class="chip" onclick="sendChip('O que você recomenda?')">O que você recomenda?</button>
+        <button class="chip" onclick="sendChip('Tem opções vegetarianas?')">Opções vegetarianas</button>
         <!-- <button class="chip" onclick="sendChip('¿O mais pedido?')">O mais pedido</button> -->
         <button class="chip" onclick="sendChip('Quero fazer um pedido')">Fazer um pedido</button>
       </div>
@@ -46,7 +46,7 @@
       <div class="chat-messages" id="chatMessages">
         <div class="msg bot">
           <div class="msg-label">Asistente</div>
-          ¡Olá! 👋 Sou assistente de <em>Restaurante Praia do Forte</em>. Posso lhe ajudar a conhecer nossos pratos, ingredientes, ou armar seu pedido. ¿Como posso ajudar?
+          Olá! 👋 Sou assistente de <em>Restaurante Praia do Forte</em>. Posso lhe ajudar a conhecer nossos pratos, ingredientes, ou armar seu pedido. Como posso ajudar?
         </div>
       </div>
 
@@ -54,7 +54,7 @@
         <textarea
           class="chat-input"
           id="chatInput"
-          placeholder="Escribe tu pregunta..."
+          placeholder="Escreve tua pergunta..."
           rows="1"
           onkeydown="handleKey(event)"
         ></textarea>
@@ -69,20 +69,20 @@
 
   <!-- ── CART INDICATOR ── -->
   <div class="cart-indicator" id="cartIndicator" onclick="openModal()">
-    Ver pedido · <span id="cartCount">0</span> items · $<span id="cartTotal">0</span>
+    Ver pedido · <span id="cartCount">0</span> itens · R$<span id="cartTotal">0</span>
   </div>
 
   <!-- ── ORDER MODAL ── -->
   <div class="modal-overlay" id="modalOverlay" onclick="closeModalOutside(event)">
     <div class="modal">
       <div class="modal-title">
-        Tu pedido
+        Seu pedido
         <button class="close-btn" onclick="closeModal()">✕</button>
       </div>
       <div id="modalItems"></div>
       <div class="order-total">
         <span>Total</span>
-        <span style="color:var(--amber)">$<span id="modalTotal">0</span></span>
+        <span style="color:var(--amber)">R$<span id="modalTotal">0</span></span>
       </div>
       <button class="confirm-btn" onclick="confirmOrder()">Confirmar pedido</button>
     </div>

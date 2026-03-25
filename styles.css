@@ -232,8 +232,10 @@ nav button.active {
 .card-back-img {
   width: 100%;
   flex: 1;
-  object-fit: cover;
+  object-fit: contain;
   display: block;
+  background: var(--dark);
+  max-height: 150px;
 }
 
 .card-back-img-placeholder {

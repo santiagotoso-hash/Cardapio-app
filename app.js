@@ -13,7 +13,7 @@ const MENU = {
       name: "Tábua de fríos",
       emoji: "🧀",
       price: 50,
-      desc: "Selección de quesos artesanais, presunto cru, salame e torradas.",
+      desc: "Seleção de queijos artesanais, presunto cru, salame e torradas.",
     },
     {
       id: 3,
@@ -29,7 +29,7 @@ const MENU = {
       name: "Hamburguer Charly Watts",
       emoji: "🍔",
       price: 60,
-      desc: "Hamburguesa de 200gr com pao vermelho e salada. Acompanha batatas fritas",
+      desc: "Hambúrguer de 200g com pão vermelho e salada. Acompanha batatas fritas",
     },
     {
       id: 5,
@@ -48,14 +48,14 @@ const MENU = {
       name: "Tiramisú clásico",
       emoji: "🍦",
       price: 30,
-      desc: "Receta tradicional italiana com mascarpone, café expresso e cacau belga.",
+      desc: "Receita tradicional italiana com mascarpone, café expresso e cacau belga.",
     },
     {
       id: 10,
       name: "Crepe de chocolate",
       emoji: "🍫",
       price: 30,
-      desc: "Coulant tibio con centro líquido, helado de vainilla artesanal y coulis de frutos rojos.",
+      desc: "Coulant morno com centro líquido, sorvete de baunilha artesanal e coulis de frutas vermelhas.",
     },
     // { id: 11, name: "Pannacotta de maracuyá",          emoji: "🟡", price: 650, desc: "Pannacotta sedosa con coulis de maracuyá y frutos frescos de estación." },
   ],
@@ -65,28 +65,28 @@ const MENU = {
       name: "Agua com o sem gas",
       emoji: "💧",
       price: 5,
-      desc: "Limón fresco, jengibre, menta y soda. Refrescante y digestiva.",
+      desc: "Limão fresco, gengibre, menta e soda. Refrescante e digestiva.",
     },
     {
       id: 13,
       name: "Chopp cerveja",
       emoji: "🍺",
       price: 20,
-      desc: "Malbec reserva de Mendoza. Notas de frutos rojos, vainilla y taninos suaves.",
+      desc: "Malbec reserva de Mendoza. Notas de frutas vermelhas, baunilha e taninos suaves.",
     },
     {
       id: 14,
       name: "Sucos da fruta",
       emoji: "💧",
       price: 15,
-      desc: "Con o sin gas. 500ml.",
+      desc: "Com ou sem gás. 500ml.",
     },
     {
       id: 15,
       name: "Taça de Vinho",
       emoji: "🍷",
       price: 25,
-      desc: "Granos de origen único, tostado artesanal. Cremoso y intenso.",
+      desc: "Grãos de origem única, torrado artesanal. Cremoso e intenso.",
     },
   ],
 };
@@ -96,21 +96,24 @@ const USE_LOCAL_ASSISTANT = true; // true = modo offline / sin API externa
 function getLocalAssistantReply(userText) {
   const txt = userText.toLowerCase();
   if (/(recomi|recomend|suger)/.test(txt)) {
-    return "Recomiendo começar com a Burrata ou a Tábua de fríos, e como principal o Hamburguer Charly Watts se quiser algo abundante.";
+    return "Recomendo começar com a Burrata ou a Tábua de frios, e como principal o Hambúrguer Charly Watts se quiser algo abundante.";
   }
   if (/(veget|veggie|vegano)/.test(txt)) {
-    return "Temos opções vegetarianas em Entradas: a Burrata e a Tábua de fríos (ou as batatas fritas sem o bacon).";
+    return "Temos opções vegetarianas em Entradas: a Burrata e a Tábua de frios (ou as batatas fritas sem o bacon).";
   }
   if (/(postr|sobrem|dulce)/.test(txt)) {
     return "Para sobremesa, te recomendo o Tiramisú ou o Crepe de chocolate. São os favoritos da casa.";
   }
-  if (/(bebid|cerveja|vino|agua)/.test(txt)) {
-    return "Para beber, o Chopp cerveja é perfeito para essa hora, tambem temos Agua com/sem gás ou Taça de Vinho.";
+  if (/(bebid|cerveja|vino|agua|água)/.test(txt)) {
+    return "Para beber, o Chopp cerveja é perfeito para essa hora, também temos Água com ou sem gás ou Taça de Vinho.";
+  }
+  if (/(mais pedido|mais vendido|popular)/.test(txt)) {
+    return "Os pratos mais pedidos são o Hambúrguer Charly Watts e a Burrata com tomate cereja.";
   }
   if (/pedido|ordenar|pedir/.test(txt)) {
-    return "Claro, pode adicionar items com o botão + em cada prato. Depois abre o carrinho para confirmar o pedido.";
+    return "Claro, pode adicionar itens com o botão + em cada prato. Depois abre o carrinho para confirmar o pedido.";
   }
-  return "Estou aquí para ayudar com o menú. Perguntame por entradas, principais, sobremesas ou bebidas, y te digo recomendações.";
+  return "Estou aqui para ajudar com o menu. Pergunte-me por entradas, principais, sobremesas ou bebidas, e te digo recomendações.";
 }
 
 // ── CART ──────────────────────────────────────────────
@@ -169,14 +172,14 @@ function openModal() {
     <div class="order-item">
       <div>
         <div class="order-item-name">${i.emoji} ${i.name}</div>
-        <div style="font-size:0.65rem;color:var(--muted)">$${i.price.toLocaleString()} c/u</div>
+        <div style="font-size:0.65rem;color:var(--muted)">R$${i.price.toLocaleString()} cada um</div>
       </div>
       <div class="order-controls">
         <button class="qty-btn" onclick="changeQty(${i.id}, -1)">−</button>
         <span style="font-size:0.9rem;min-width:20px;text-align:center">${i.qty}</span>
         <button class="qty-btn" onclick="changeQty(${i.id}, 1)">+</button>
         <span style="color:var(--amber);font-family:'Cormorant Garamond',serif;font-size:1rem;margin-left:0.5rem">
-          $${(i.qty * i.price).toLocaleString()}
+          R$${(i.qty * i.price).toLocaleString()}
         </span>
       </div>
     </div>
@@ -277,7 +280,7 @@ function renderMenu() {
               <div class="item-desc">${item.desc}</div>
               <div class="item-footer">
                 <div>
-                  <div class="item-price">$${item.price.toLocaleString()}</div>
+                  <div class="item-price">R$${item.price.toLocaleString()}</div>
                   <div class="flip-hint">clic para ver foto</div>
                 </div>
                 <button class="add-btn" onclick="addToCart(${item.id})">+</button>
@@ -293,7 +296,7 @@ function renderMenu() {
               <div class="card-back-footer">
                 <div>
                   <div class="card-back-name">${item.name}</div>
-                  <div class="card-back-price">$${item.price.toLocaleString()}</div>
+                  <div class="card-back-price">R$${item.price.toLocaleString()}</div>
                 </div>
                 <button class="add-btn-back" onclick="addToCart(${item.id})">+ Agregar</button>
               </div>
@@ -312,7 +315,7 @@ const menuContext = Object.entries(MENU)
   .map(
     ([cat, items]) =>
       `**${cat}:**\n` +
-      items.map((i) => `- ${i.name} ($${i.price}): ${i.desc}`).join("\n"),
+      items.map((i) => `- ${i.name} (R$${i.price}): ${i.desc}`).join("\n"),
   )
   .join("\n\n");
 
