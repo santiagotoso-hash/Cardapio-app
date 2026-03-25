@@ -25,6 +25,9 @@ const MENU = {
   ]
 };
 
+// ── CHAT CONTROL ─────────────────────────────────────
+const CHAT_ENABLED = false; // Cambiar a true cuando quieras habilitar el asistente IA otra vez
+
 // ── CART ──────────────────────────────────────────────
 let cart = {};
 
@@ -257,6 +260,8 @@ function removeTyping() {
 }
 
 async function sendMessage() {
+  if (!CHAT_ENABLED) return; // asistente apagado
+
   const input = document.getElementById('chatInput');
   const text = input.value.trim();
   if (!text || isTyping) return;
@@ -299,11 +304,14 @@ async function sendMessage() {
 }
 
 function sendChip(text) {
+  if (!CHAT_ENABLED) return;
   document.getElementById('chatInput').value = text;
   sendMessage();
 }
 
 function handleKey(e) {
+  if (!CHAT_ENABLED) return;
+
   if (e.key === 'Enter' && !e.shiftKey) {
     e.preventDefault();
     sendMessage();
@@ -325,6 +333,12 @@ document.addEventListener('DOMContentLoaded', () => {
     this.style.height = Math.min(this.scrollHeight, 100) + 'px';
   });
 
+  if (!CHAT_ENABLED) {
+    const sidebar = document.getElementById('chatSidebar');
+    const mobileBtn = document.getElementById('mobileToggle');
+    if (sidebar) sidebar.style.display = 'none';
+    if (mobileBtn) mobileBtn.style.display = 'none';
+  }
   renderNav();
   renderMenu();
 });
